@@ -83,12 +83,7 @@ public class OrderRepository {
     public Integer findOrderCountByPartnerId(String partnerId)
     {
         // your code here
-        if(partnerToOrderMap.containsKey(partnerId))
-        {
-            HashSet<String> orderSet=partnerToOrderMap.get(partnerId);
-            return orderSet.size();
-        }
-        return 0;
+        return partnerMap.get(partnerId).getNumberOfOrders();
     }
 
     public List<String> findOrdersByPartnerId(String partnerId)
@@ -125,6 +120,11 @@ public class OrderRepository {
                 orderToPartnerMap.remove(orderId); //unassigned orders
             }
             partnerToOrderMap.remove(partnerId); //removed partner
+
+            //update the number of delivery to zero
+            DeliveryPartner deliveryPartner=partnerMap.get(partnerId);
+            deliveryPartner.setNumberOfOrders(0);
+            partnerMap.put(partnerId,deliveryPartner);
         }
     }
 
