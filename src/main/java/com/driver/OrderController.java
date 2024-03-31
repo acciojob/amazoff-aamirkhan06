@@ -25,7 +25,7 @@ public class OrderController
     public ResponseEntity<String> addOrder(@RequestBody Order order)
     {
         //1
-        if(order!=null || !order.getId().isEmpty())
+        if(order!=null && !order.getId().isEmpty())
         {
             orderService.addOrder(order);
         }
