@@ -197,7 +197,19 @@ public class OrderRepository {
             }
             int hour=maxDeliveryTime/60;
             int min=maxDeliveryTime%60;
-            time=hour+":"+min;
+            if(hour<10)
+            {
+                time=time+"0"+hour;
+            }
+            else if(hour<24)
+            {
+                time=time+hour;
+            }
+            else
+            {
+                time=time+"00";
+            }
+            time=time+":"+min;
         }
         return time;
     }

@@ -112,7 +112,10 @@ public class OrderController
         Integer countOfOrders = 0;
 
         //countOfOrders that are left after a particular time of a DeliveryPartner
-        countOfOrders=orderService.getOrdersLeftAfterGivenTimeByPartnerId(time,partnerId);
+        if(time.length()==5)
+        {
+            countOfOrders = orderService.getOrdersLeftAfterGivenTimeByPartnerId(time, partnerId);
+        }
         return new ResponseEntity<>(countOfOrders, HttpStatus.CREATED);
     }
 
@@ -122,6 +125,10 @@ public class OrderController
 
         //Return the time when that partnerId will deliver his last delivery order.
         time= orderService.getLastDeliveryTimeByPartnerId(partnerId);
+        if(time.isEmpty())
+        {
+            time=null;
+        }
         return new ResponseEntity<>(time, HttpStatus.CREATED);
     }
 
