@@ -42,12 +42,17 @@ public class OrderRepository {
 
             //partnerToOrderMap
             HashSet<String> orderSet=partnerToOrderMap.get(partnerId);
+            if(orderSet==null)
+            {
+                orderSet=new HashSet<>();
+            }
             orderSet.add(orderId);
             partnerToOrderMap.put(partnerId,orderSet);
 
             //increase order count of partner
             DeliveryPartner partner= partnerMap.get(partnerId);
             partner.setNumberOfOrders(partner.getNumberOfOrders()+1);
+            partnerMap.put(partnerId,partner);
 
             //private HashMap<String, String> orderToPartnerMap;
             //orderToPartnerMap
