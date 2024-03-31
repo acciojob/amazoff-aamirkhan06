@@ -1,6 +1,0 @@
-com\driver\OrderController.class
-com\driver\Order.class
-com\driver\OrderRepository.class
-com\driver\OrderService.class
-com\driver\Application.class
-com\driver\DeliveryPartner.class
