@@ -22,10 +22,7 @@ public class OrderRepository {
 
     public void saveOrder(Order order){
         // your code here
-        if(order!=null)
-        {
-            orderMap.put(order.getId(), order);
-        }
+        orderMap.put(order.getId(), order);
     }
 
     public void savePartner(String partnerId){

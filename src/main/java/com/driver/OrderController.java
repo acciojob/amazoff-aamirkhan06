@@ -25,7 +25,10 @@ public class OrderController
     public ResponseEntity<String> addOrder(@RequestBody Order order)
     {
         //1
-        orderService.addOrder(order);
+        if(order!=null || !order.getId().isEmpty())
+        {
+            orderService.addOrder(order);
+        }
         return new ResponseEntity<>("New order added successfully", HttpStatus.CREATED);
     }
 
