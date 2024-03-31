@@ -1,5 +1,8 @@
 package com.driver;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Order {
 
     private String id;
@@ -9,11 +12,9 @@ public class Order {
 
         // The deliveryTime has to converted from string to int and then stored in the attribute
         //deliveryTime  = HH*60 + MM
-        int hour=Integer.parseInt(deliveryTime.substring(0,2));
-        int min=Integer.parseInt(deliveryTime.substring(3));
-        int time=hour*60+min;
-        this.id=id;
-        this.deliveryTime=time;
+
+        this.deliveryTime=delivery(deliveryTime);
+        this.id=id; // optional maybe
     }
 
     public String getId()
@@ -26,4 +27,14 @@ public class Order {
         return deliveryTime;
     }
 
+    private  int delivery(String deliveryTime){
+        List<String>list = Arrays.asList(deliveryTime.split(":"));
+        int HH = Integer.parseInt(list.get(0));
+        int MM = Integer.parseInt(list.get(1));
+        return HH * 60 + MM;
+    }
+
+    public void setDeliveryTime(int deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
 }
